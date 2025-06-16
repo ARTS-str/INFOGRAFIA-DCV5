@@ -4,23 +4,28 @@ let body = document.body;
 let scaleTransform, xTransform, yTransform;
 let scrollPercent = 1
 let maxScale = 10;
+let timelineX, timelineY, timelineZ;
 
 window.onscroll = () => {
     let maxScroll = body.clientHeight - window.innerHeight;
-    scrollPercent = window.scrollY / maxScroll * 100;
+    scrollPercent = round(window.scrollY / maxScroll * 100);
 
 };
 
 function setup(){
-
+    timelineX = new Timeline();
+    timelineX.addKeyframe(0.5, 200);
+    timelineX.setAllValues(new Keyframe(0, 0), new Keyframe(1, 250));
+    timelineY = new Timeline();
+    timelineY.addKeyframe(0.5, 300);
+    timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 360));
+    timelineZ = new Timeline();
+    timelineZ.setAllValues(new Keyframe(0, 1), new Keyframe(1, 0.1));
 }
 
 function draw(){
 
-    scaleTransform = map(scrollPercent, 1, 100, 1, maxScale);
-    let x = map(scrollPercent*2, 1, 100, 0, 250, true);
-    let y = map(scrollPercent*2, 1, 100, 0, 360, true);
-    latamMap.setAttribute('viewBox', x +' '+ y  +' '+ 370 * 1/scaleTransform + ' ' + 500 * 1/scaleTransform);
-    uyPath.style.opacity = map(scrollPercent*2, 0, 100, 0, 1, true);
+    latamMap.setAttribute('viewBox', timelineX.valueAt(scrollPercent*10) +' '+ timelineY.valueAt(scrollPercent*10)  +' '+ 370 * timelineZ.valueAt(scrollPercent*10) + ' ' + 500 * timelineZ.valueAt(scrollPercent*10));
 
+    uyPath.style.opacity = map(scrollPercent*2, 0, 100, 0, 1, true);
 }
