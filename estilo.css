@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-height: 2500px;
+}
+
+
+
+
+#LATAM{
+    will-change: transform;
+    image-rendering: optimizeQuality;
+    height: 100%;
+    width: 100vw;
+    overflow: hidden;
+    position: fixed;
+}
