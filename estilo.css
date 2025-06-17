@@ -5,10 +5,8 @@
 
 body{
     min-height: 2500px;
+    -webkit-overflow-scrolling: touch;
 }
-
-
-
 
 #LATAM{
     will-change: transform;

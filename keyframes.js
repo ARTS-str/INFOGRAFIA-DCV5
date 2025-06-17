@@ -9,7 +9,9 @@ class Timeline {//objeto de linea de tiempo
         this.timestep = 0.001; //resolucion de la linea de tiempo
         this.keyframes = [];
         this.timelineValues = [];
+        this.currentTime = 0;
     }
+
     addKeyframe(t, v){ //agregar un keyframe a la linea de tiempo
         if (this.keyframes.length > 0) { //si no está vacio
             for(let keyframe of this.keyframes){ //pasar por todos los keyframes
@@ -27,7 +29,6 @@ class Timeline {//objeto de linea de tiempo
         this.keyframes.unshift(init);
         this.keyframes.push(end);
         for(let x = 0; x < this.keyframes.length-1; x++){
-            console.log(this.keyframes[x]);
             for(let t = this.keyframes[x].t; t < this.keyframes[x+1].t; t += this.timestep){
                 this.timelineValues.push(this.lerp(this.keyframes[x], this.keyframes[x+1], t));
             }
@@ -41,6 +42,23 @@ class Timeline {//objeto de linea de tiempo
         return new Keyframe(t, value);
     }
     valueAt(percent){
+        this.currentTime = percent;
         return this.timelineValues[percent].value;
+    }
+    keyAt(percent){
+        return this.timelineValues[percent];
+    }
+    getClosestKeyframe(){
+        let output;
+        let dTArray = [];
+        let valuesArray = [];
+        for(let keyframe of this.keyframes){
+            dTArray.push(keyframe); //array de diferencias de tiempo a tiempo actual
+            valuesArray.push(Math.abs(keyframe.t - this.currentTime));
+        }
+        let minTime = Math.min.apply(null, valuesArray);
+        let outPosition = valuesArray.indexOf(minTime);
+        output = dTArray[outPosition];
+        return output
     }
 }
