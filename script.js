@@ -24,53 +24,54 @@ function setup(){
     //POS x
     timelineX = new Timeline();
     //CENTROAMERICA
-    timelineX.addKeyframe(0.1, 180);
-    timelineX.addKeyframe(0.2, 180);
+    timelineX.addKeyframe(0.1, 400);
+    timelineX.addKeyframe(0.15, 400);
     //LATAM
-    timelineX.addKeyframe(0.3, 250);
-    timelineX.addKeyframe(0.4, 250);
+    timelineX.addKeyframe(0.3, 0);
+    timelineX.addKeyframe(0.35, 0);
     //URUGUAY
-    timelineX.addKeyframe(0.5, 330);
-    timelineX.addKeyframe(0.6, 330);
+    timelineX.addKeyframe(0.5, 1035);
+    timelineX.addKeyframe(0.55,1035);
     //SIG PAG
-    timelineX.addKeyframe(0.7, 180);
-    timelineX.addKeyframe(0.8, 180);
-    timelineX.setAllValues(new Keyframe(0, 180), new Keyframe(1, 300));
+    timelineX.addKeyframe(0.7, 0);
+    timelineX.addKeyframe(0.75,0);
+    timelineX.setAllValues(new Keyframe(0, 0), new Keyframe(1, 300));
 
     //POS Y
     timelineY = new Timeline();
     //CENTROAMERICA
-    timelineY.addKeyframe(0.1, 250);
-    timelineY.addKeyframe(0.2, 250);
+    timelineY.addKeyframe(0.1, 1150);
+    timelineY.addKeyframe(0.15, 1150);
     //LATAM
-    timelineY.addKeyframe(0.3, 300);
-    timelineY.addKeyframe(0.4, 300);
+    timelineY.addKeyframe(0.3, 1150);
+    timelineY.addKeyframe(0.35, 1150);
     //URUGUAY
-    timelineY.addKeyframe(0.5, 450);
-    timelineY.addKeyframe(0.6, 450);
+    timelineY.addKeyframe(0.5, 1800);
+    timelineY.addKeyframe(0.55,1800);
     //SIG PAG
-    timelineY.addKeyframe(0.7, 550);
-    timelineY.addKeyframe(0.8, 550);
-    timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 850));
+    timelineY.addKeyframe(0.7,  2300);
+    timelineY.addKeyframe(0.75, 2300);
+    timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 2000));
 
     //ZOOM
     timelineZ = new Timeline();
     //CENTROAMERICA
-    timelineZ.addKeyframe(0.1, 0.3);
-    timelineZ.addKeyframe(0.2, 0.3);
-    //EFECTO ZOOM OUT
-    timelineZ.addKeyframe(0.35, 0.5);
+    timelineZ.addKeyframe(0.1, 0.8);
+    timelineZ.addKeyframe(0.15,0.8);
+    //LATAM
+    timelineZ.addKeyframe(0.3, 1.5);
+    timelineZ.addKeyframe(0.35, 1.5);
     //URUGUAY
-    timelineZ.addKeyframe(0.5, 0.1);
-    timelineZ.addKeyframe(0.6, 0.1);
+    timelineZ.addKeyframe(0.5, 0.2);
+    timelineZ.addKeyframe(0.55,0.2);
     //SIG PAG
-    timelineZ.addKeyframe(0.7, 0.5);
-    timelineZ.addKeyframe(0.8, 0.5);
+    timelineZ.addKeyframe(0.7, 1.4);
+    timelineZ.addKeyframe(0.75,1.4);
 
 
-    timelineZ.setAllValues(new Keyframe(0, 0.5), new Keyframe(1, 0.06));
+    timelineZ.setAllValues(new Keyframe(0, 1.4), new Keyframe(1, 0.06));
 
-    //PARADAS
+    //POSICION DE LAS PARADAS EN EL SCROLL
     timelineS = new Timeline();
     timelineS.addKeyframe(0, 0);
     timelineS.addKeyframe(0.1, 0);
@@ -81,7 +82,7 @@ function setup(){
 }
 
 function draw(){
-    let viewBoxArgs = timelineX.valueAt(scrollPercent*10) +' '+ timelineY.valueAt(scrollPercent*10)  +' '+ 370 * timelineZ.valueAt(scrollPercent*10) + ' ' + 500 * timelineZ.valueAt(scrollPercent*10)
+    let viewBoxArgs = timelineX.valueAt(scrollPercent*10) +' '+ timelineY.valueAt(scrollPercent*10)  +' '+ window.innerWidth * timelineZ.valueAt(scrollPercent*10) + ' ' + window.innerHeight * timelineZ.valueAt(scrollPercent*10)
     latamMap.setAttribute('viewBox', viewBoxArgs);
 
     if (scrollPercent > 60) {  

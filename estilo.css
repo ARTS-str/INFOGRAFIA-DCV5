@@ -8,10 +8,8 @@ body{
     -webkit-overflow-scrolling: touch;
 }
 #LATAM{
-    will-change: transform;
     image-rendering: optimizeQuality;
     height: 100%;
-    width: 100vw;
     overflow: hidden;
     position: fixed;
 }
