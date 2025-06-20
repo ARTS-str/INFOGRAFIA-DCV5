@@ -2,10 +2,14 @@
     margin: 0;
     padding: 0;
 }
+html{
+    scrollbar-color: #aaaaaaca #aaaaaa00;
+}
 
 body{
     min-height: 2500px;
-    overflow-x: hidden;
+    background-color: black;
+    transition: background-color 1s ease-in-out;
 }
 
 .botonera{
@@ -25,7 +29,6 @@ body{
     image-rendering: optimizeQuality;
     width: 100vw;
     height: auto;
-    overflow: hidden;
     position: fixed;
 }
 
@@ -34,6 +37,5 @@ body{
     image-rendering: optimizeQuality;
     width: 100vw;
     height: auto;
-    overflow: hidden;
     position: fixed;
 }

@@ -3,12 +3,11 @@ let latamMap = document.getElementById('LATAM');
 let uyPath = document.getElementById('UY');
 let titulo = document.getElementById('texttitulo');
 let lineas = document.querySelectorAll('.linea');
-
 let body = document.body;
 let scaleTransform, xTransform, yTransform;
 let scrollPercent = 1
 let maxScale = 10;
-let timelineX, timelineY, timelineZ, timelineS, timelineL;
+let timelineX, timelineY, timelineZ, timelineS, timelineL, timelineCol;
 let closest, isScrolling, textCoord;
 
 window.onscroll = () => {
@@ -28,8 +27,7 @@ function preload() {
 }
 
 function setup(){
-    //textCoord = createElement('label', null);
-    //textCoord.position(0, 0)
+    noCanvas();
     //POS x
     timelineX = new Timeline();
     //CENTROAMERICA
@@ -68,6 +66,11 @@ function setup(){
     timelineL.addKeyframe(0.7, totalLength)
     timelineL.setAllValues(new Keyframe(0, totalLength), new Keyframe(1, 0));
     
+    //COLORES DE FONDO
+    timelineCol = new Timeline();
+    timelineCol.addKeyframe(0.5, 1)
+    timelineCol.setAllValues(new Keyframe(0, 0), new Keyframe(1, 2));
+
 }
 
 function draw(){
@@ -84,14 +87,17 @@ function draw(){
    
     timelineS.currentTime = scrollPercent * 0.01;
     console.log(scrollPercent)
-    if (!isScrolling && scrollPercent < 70) { 
+    if (!isScrolling) { 
         timelineS.currentTime = scrollPercent * 0.01;
         let scrollToY = calcularScrollYSegunPercent(timelineS.getClosestKeyframe().t * 100);
         window.scrollTo({top: scrollToY, left: 0, behavior: 'smooth'});
         
     }
-    
+    let colors = ['#ff0000', '#00ff00', '#0000ff'];
+    body.style.backgroundColor = colors[round(timelineCol.valueAt(scrollPercent*10))];
+
 }
+
 
 function calcularScrollYSegunPercent(sPercent){
     let maxScroll = body.clientHeight - window.innerHeight;
