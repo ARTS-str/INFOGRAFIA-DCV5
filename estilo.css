@@ -5,14 +5,35 @@
 
 body{
     min-height: 2500px;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+}
+
+.botonera{
+    position: fixed;
+    z-index: 1;
+}
+
+#linea{
+    stroke: black;
+    stroke-width: 10;
+    fill: none;
+  }
+
+#LATAM_EN{
+    display: none;
+    will-change: transform;
+    image-rendering: optimizeQuality;
+    width: 100vw;
+    height: auto;
+    overflow: hidden;
+    position: fixed;
 }
 
 #LATAM{
     will-change: transform;
     image-rendering: optimizeQuality;
-    height: 100%;
     width: 100vw;
+    height: auto;
     overflow: hidden;
     position: fixed;
 }
