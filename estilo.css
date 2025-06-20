@@ -13,7 +13,7 @@ body{
     z-index: 1;
 }
 
-#linea{
+.linea{
     stroke: black;
     stroke-width: 10;
     fill: none;

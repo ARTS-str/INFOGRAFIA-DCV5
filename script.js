@@ -2,7 +2,7 @@ let currentMap;
 let latamMap = document.getElementById('LATAM');
 let uyPath = document.getElementById('UY');
 let titulo = document.getElementById('texttitulo');
-let linea = document.getElementById('linea');
+let lineas = document.querySelectorAll('.linea');
 
 let body = document.body;
 let scaleTransform, xTransform, yTransform;
@@ -59,17 +59,23 @@ function setup(){
     timelineS.addKeyframe(1, 0);
 
     //LINEAS
+    let totalLength;
+    for (let linea of lineas) {
+        linea.style.strokeDasharray = linea.getTotalLength()
+        totalLength = linea.getTotalLength();
+    }
     timelineL = new Timeline();
-    timelineL.addKeyframe(0.7, linea.getTotalLength())
-    timelineL.setAllValues(new Keyframe(0, linea.getTotalLength()), new Keyframe(1, 0));
-    linea.style.strokeDasharray = linea.getTotalLength()
+    timelineL.addKeyframe(0.7, totalLength)
+    timelineL.setAllValues(new Keyframe(0, totalLength), new Keyframe(1, 0));
+    
 }
 
 function draw(){
     let viewBoxArgs = timelineX.valueAt(scrollPercent*10) +' '+ timelineY.valueAt(scrollPercent*10)  +' '+ 1920 * timelineZ.valueAt(scrollPercent*10) + ' ' + 2722.72 * timelineZ.valueAt(scrollPercent*10)
     currentMap.setAttribute('viewBox', viewBoxArgs);
-    linea.style.strokeDashoffset = Number(timelineL.valueAt(scrollPercent*10));
-    console.log(timelineL.valueAt(scrollPercent*10))
+    for (let linea of lineas) {
+        linea.style.strokeDashoffset = Number(timelineL.valueAt(scrollPercent*10));
+    }
     //textCoord.html(viewBoxArgs);
     if (scrollPercent > 60) {  
         uyPath.style.opacity = map(scrollPercent, 60, 100, 0, 1, true);
@@ -77,7 +83,8 @@ function draw(){
 
    
     timelineS.currentTime = scrollPercent * 0.01;
-    if (!isScrolling) { 
+    console.log(scrollPercent)
+    if (!isScrolling && scrollPercent < 70) { 
         timelineS.currentTime = scrollPercent * 0.01;
         let scrollToY = calcularScrollYSegunPercent(timelineS.getClosestKeyframe().t * 100);
         window.scrollTo({top: scrollToY, left: 0, behavior: 'smooth'});
