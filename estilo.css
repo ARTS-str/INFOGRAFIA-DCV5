@@ -82,6 +82,7 @@ body{
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
         color: aliceblue;
+        font-family: Neue Frutiger World;
         font-size: 30pt;
         text-align: center;
         padding: 270px 0;
