@@ -6,10 +6,19 @@ html{
     scrollbar-color: #aaaaaaca #aaaaaa00;
 }
 
+#linea{
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
+}
+@keyframes linea {
+    from{transform: scale(0) rotate(-45deg);}
+    to{transform: scale(1) rotate(0deg);}
+}
+
 body{
-    min-height: 2500px;
+    min-height: 5000px;
     background-color: black;
-    transition: background-color 1s ease-in-out;
+    transition: background-color 100ms ease-in-out;
 }
 
 .botonera{
@@ -17,11 +26,6 @@ body{
     z-index: 1;
 }
 
-.linea{
-    stroke: black;
-    stroke-width: 10;
-    fill: none;
-  }
 
 #LATAM_EN{
     display: none;
