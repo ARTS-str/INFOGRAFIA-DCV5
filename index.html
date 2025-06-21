@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Map Test</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.7/lib/p5.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.7/lib/addons/p5.sound.min.js"></script>
@@ -13,7 +14,11 @@
     <button onclick="language('ES')">ES</button>
     <button onclick="language('EN')">EN</button>
   </div>
-      
+  <!--<div id="debug"></div>-->
+  <div class="rotate">
+    Por favor, rota tu dispositivo.
+  </div>
+  
   <svg id="LATAM" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920.04 3612.6">
   <defs>
     <style>
@@ -36,7 +41,7 @@
       }
 
       .cls-5 {
-        font-family: RSTTrasandina-Ultra, 'RST Trasandina';
+        font-family: Covik Sans;
         font-size: 398.96px;
         font-variation-settings: 'wght' 900;
       }
@@ -205,7 +210,7 @@
     </g>
   </g>
 </svg>
-<svg id="LATAM_EN" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 2722.72">
+<!--<svg id="LATAM_EN" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 2722.72">
     <defs>
       <style>
         .cls-1 {
@@ -349,7 +354,7 @@
         <path d="M0,2.29c37.99-7.37,79.9,3.16,108.58,29.53,37.59,33.58,50.79,91.53,31.14,137.72,12.04-46.82-.88-99-36.49-131.93C75.88,11.74,37.19.78,0,2.29h0Z"/>
       </g>
     </g>
-  </svg>
+  </svg>-->
 </body>
 <script src="keyframes.js"></script>
 <script src="script.js"></script>

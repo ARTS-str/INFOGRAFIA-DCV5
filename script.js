@@ -3,6 +3,7 @@ let latamMap = document.getElementById('LATAM');
 let uyPath = document.getElementById('UY');
 let titulo = document.getElementById('texttitulo');
 let linea = document.getElementById('linea');
+let debug = document.getElementById('debug');
 let body = document.body;
 let scaleTransform, xTransform, yTransform;
 let scrollPercent = 0;
@@ -10,9 +11,12 @@ let maxScale = 10;
 let timelineX, timelineY, timelineZ, timelineS, timelineL, timelineCol;
 let closest, isScrolling, textCoord;
 
+
+window.scrollTo({top: -50, left: 0, behavior: 'smooth'});
+
 window.onscroll = () => {
     let maxScroll = body.clientHeight - window.innerHeight;
-    scrollPercent = Math.round(window.scrollY / maxScroll * 100);
+    scrollPercent = Math.min(100, Math.max(0, Math.round(window.scrollY / maxScroll * 100)));
     
     isScrolling = true;
 };
@@ -94,10 +98,12 @@ function setup(){
 }
 
 function draw(){
-    let viewBoxArgs = timelineX.valueAt(scrollPercent*10) +' '+ timelineY.valueAt(scrollPercent*10)  +' '+ 1920.04 * timelineZ.valueAt(scrollPercent*10) + ' ' + 3612.6 * timelineZ.valueAt(scrollPercent*10)
+    //debug.innerHTML = scrollPercent;
+    let scrollPercentTimesTen = scrollPercent*10;
+    let viewBoxArgs = timelineX.valueAt(scrollPercentTimesTen) +' '+ timelineY.valueAt(scrollPercentTimesTen)  +' '+ 1920.04 * timelineZ.valueAt(scrollPercentTimesTen) + ' ' + 3612.6 * timelineZ.valueAt(scrollPercentTimesTen)
     currentMap.setAttribute('viewBox', viewBoxArgs);
     //for (let linea of lineas) {
-    //    linea.style.strokeDashoffset = Number(timelineL.valueAt(scrollPercent*10));
+    //    linea.style.strokeDashoffset = Number(timelineL.valueAt(scrollPercentTimesTen));
     //}
     //textCoord.html(viewBoxArgs);
     if (scrollPercent > 60) {  
@@ -121,7 +127,7 @@ function draw(){
         
     }
     let colors = ['#a87d6f', '#d6d6d6', '#7d4649'];
-    body.style.backgroundColor = colors[round(timelineCol.valueAt(scrollPercent*10))];
+    body.style.backgroundColor = colors[round(timelineCol.valueAt(scrollPercentTimesTen))];
 
 }
 
