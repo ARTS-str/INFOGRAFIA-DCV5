@@ -2,7 +2,8 @@ let currentMap;
 let latamMap = document.getElementById('LATAM');
 let uyPath = document.getElementById('UY');
 let titulo = document.getElementById('texttitulo');
-let linea = document.getElementById('linea');
+let lineas = document.getElementById('LINEAS');
+let lineasChild = lineas.children;
 let debug = document.getElementById('debug');
 let body = document.body;
 let scaleTransform, xTransform, yTransform;
@@ -37,7 +38,7 @@ function setup(){
     //CENTROAMERICA
     timelineX.addKeyframe(0.15, 622);
     //LATAM
-    timelineX.addKeyframe(0.3, 469);
+    timelineX.addKeyframe(0.3, 481);
     //URUGUAY
     timelineX.addKeyframe(0.45, 1025);
     //CHUY
@@ -50,7 +51,7 @@ function setup(){
     //CENTROAMERICA
     timelineY.addKeyframe(0.15, 1936);
     //LATAM
-    timelineY.addKeyframe(0.3, 1933);
+    timelineY.addKeyframe(0.3, 1936);
     //URUGUAY
     timelineY.addKeyframe(0.45, 2360);
     //CHUY
@@ -62,7 +63,7 @@ function setup(){
     //CENTROAMERICA
     timelineZ.addKeyframe(0.15, 0.40);
     //LATAM
-    timelineZ.addKeyframe(0.3, 0.57);
+    timelineZ.addKeyframe(0.3, 0.60);
     //URUGUAY
     timelineZ.addKeyframe(0.45, 0.07);
     //URUGUAY
@@ -110,14 +111,21 @@ function draw(){
         uyPath.style.opacity = map(scrollPercent, 60, 100, 0, 1, true);
     }
 
-    if (scrollPercent < 30){
-        linea.style.opacity = '0';
-        linea.style.animation = 'none';
+    if (scrollPercent < 30 || scrollPercent > 35){
+        lineas.style.opacity = '0';
+        for (const linea of lineasChild) {
+            linea.style.animationDuration = '0';
+        }
+    }else{
+        lineas.style.opacity = '1';
+        for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {    
+            lineasChild[lineaI].style.opacity = '1';
+            lineasChild[lineaI].style.animationDuration = '250ms';
+        }
+        
+
     }
-    if (scrollPercent === 30) {
-        linea.style.opacity = '1';
-        linea.style.animation = 'linea 1s ease-in-out';
-    }
+    
 
     timelineS.currentTime = scrollPercent * 0.01;
     if (!isScrolling) { 
@@ -131,6 +139,27 @@ function draw(){
 
 }
 
+function getTimingWithID(elementId){
+    switch (elementId) {
+        case 1:
+            return "250ms";
+        case 2:
+            
+            return "500ms";
+        case 3:
+            
+            return "750ms";
+        case 4:
+            
+            return "1s";
+        case 5:
+            
+            return "1250ms";
+    
+        default:
+            return "0";
+    }
+}
 
 function calcularScrollYSegunPercent(sPercent){
     let maxScroll = body.clientHeight - window.innerHeight;

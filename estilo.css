@@ -14,12 +14,69 @@ html{
     scrollbar-color: #aaaaaaca #aaaaaa00;
 }
 
-#linea{
+#CUBA_A_RR{
     opacity: 0;
     transition: opacity 100ms ease-in-out;
+    animation-name: lineaR;
+    animation-timing-function: ease-in-out;
 }
-@keyframes linea {
+
+#RR_A_MANAUS{
+    opacity: 0;
+    transition: opacity 100ms 250ms ease-in-out;
+    animation-name: lineaR;
+    animation-timing-function: ease-in-out;
+    animation-delay: 250ms;
+}
+
+#MANAUS_A_SP{
+    opacity: 0;
+    transition: opacity 100ms 500ms ease-in-out;
+    animation-name: lineaR;
+    animation-timing-function: ease-in-out;
+    animation-delay: 500ms;
+}
+
+#MANAUS_A_PORTO_ALEGRE{
+    opacity: 0;
+    transition: opacity 100ms 750ms ease-in-out;
+    animation-name: lineaR;
+    animation-timing-function: ease-in-out;
+    animation-delay: 750ms;
+}
+
+#SP_A_PORTO_ALEGRE{
+    opacity: 0;
+    transition: opacity 100ms 1s ease-in-out;
+    animation-name: lineaR;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1s;
+}
+
+
+#PORTO_ALEGRE_A_RIVERA{
+    opacity: 0;
+    transition: opacity 100ms 1250ms ease-in-out;
+    animation-name: lineaR;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1250ms;
+}
+
+
+#PORTO_ALEGRE_A_CHUY{
+    opacity: 0;
+    transition: opacity 100ms 1250ms ease-in-out;
+    animation-name: lineaR;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1250ms;
+}
+
+@keyframes lineaR {
     from{transform: scale(0) rotate(-45deg);}
+    to{transform: scale(1) rotate(0deg);}
+}
+@keyframes lineaL {
+    from{transform: scale(0) rotate(45deg);}
     to{transform: scale(1) rotate(0deg);}
 }
 
