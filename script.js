@@ -110,21 +110,7 @@ function draw(){
     if (scrollPercent > 60) {  
         uyPath.style.opacity = map(scrollPercent, 60, 100, 0, 1, true);
     }
-
-    if (scrollPercent < 30 || scrollPercent > 35){
-        lineas.style.opacity = '0';
-        for (const linea of lineasChild) {
-            linea.style.animationDuration = '0';
-        }
-    }else{
-        lineas.style.opacity = '1';
-        for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {    
-            lineasChild[lineaI].style.opacity = '1';
-            lineasChild[lineaI].style.animationDuration = '250ms';
-        }
-        
-
-    }
+    animateLines();
     
 
     timelineS.currentTime = scrollPercent * 0.01;
@@ -139,8 +125,51 @@ function draw(){
 
 }
 
-function getTimingWithID(elementId){
-    switch (elementId) {
+function animateLines(){
+    
+    if (scrollPercent < 30 || scrollPercent > 35){
+        lineas.style.opacity = '0';
+        for (const linea of lineasChild) {
+            linea.style.animation = 'none';
+        }
+    }else{
+        lineas.style.opacity = '1';
+        for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {
+            if (lineaI >= 3) {
+                lineasChild[lineaI].style.animation = 'lineaLeft';
+            }else{
+                lineasChild[lineaI].style.animation = 'lineaRight';
+            }
+            lineasChild[lineaI].style.animationDuration = 1000 * lineaI + 'ms';
+        }
+        
+
+    }
+
+}
+
+function getOrientationWithIndex(index){
+    switch (index) {
+        case 1:
+            return "lineaR";
+        case 2:
+            return "lineaR";
+        case 3:
+            return "750ms";
+        case 4:
+            
+            return "1s";
+        case 5:
+            
+            return "1250ms";
+    
+        default:
+            return "0";
+    }
+}
+
+function getTimingWithIndex(index){
+    switch (index) {
         case 1:
             return "250ms";
         case 2:
