@@ -14,42 +14,45 @@ html{
     scrollbar-color: #aaaaaaca #aaaaaa00;
 }
 
-#CUBA_A_RR{
-    
+#Zoom2{
     transition: opacity 100ms ease-in-out;
+}
+/*
+#CUBA_A_RR{
+    opacity: 0;
+    transition: opacity 1000ms ease-in-out;
 }
 
 #RR_A_MANAUS{
-    
-    transition: opacity 100ms 250ms ease-in-out;
+    opacity: 0;
+    transition: opacity 1000ms 1000ms ease-in-out;
 }
 
 #MANAUS_A_SP{
-    
-    transition: opacity 100ms 500ms ease-in-out;
+    opacity: 0;
+    transition: opacity 1000ms 2000ms ease-in-out;
 }
 
 #MANAUS_A_PORTO_ALEGRE{
-    
-    transition: opacity 100ms 750ms ease-in-out;
+    opacity: 0;
+    transition: opacity 1000ms 2000ms ease-in-out;
 }
 
 #SP_A_PORTO_ALEGRE{
-    
-    transition: opacity 100ms 1s ease-in-out;
+    opacity: 0;
+    transition: opacity 1000ms 3000s ease-in-out;
 }
 
-
 #PORTO_ALEGRE_A_RIVERA{
-    
-    transition: opacity 100ms 1250ms ease-in-out;
+    opacity: 0;
+    transition: opacity 1000ms 4000ms ease-in-out;
 }
 
 
 #PORTO_ALEGRE_A_CHUY{
-    
-    transition: opacity 100ms 1250ms ease-in-out;
-}
+    opacity: 0;
+    transition: opacity 1000ms 4000ms ease-in-out;
+} */
 
 @keyframes lineaRight {
     from{transform: scale(0) rotate(-45deg);}

@@ -42,7 +42,6 @@ class Timeline {//objeto de linea de tiempo
         return new Keyframe(t, value);
     }
     valueAt(percent){
-        this.currentTime = percent;
         return this.timelineValues[percent].value;
     }
     keyAt(percent){

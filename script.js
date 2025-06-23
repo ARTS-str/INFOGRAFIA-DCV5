@@ -1,6 +1,5 @@
 let currentMap;
 let latamMap = document.getElementById('LATAM');
-let uyPath = document.getElementById('UY');
 let titulo = document.getElementById('texttitulo');
 let lineas = document.getElementById('LINEAS');
 let lineasChild = lineas.children;
@@ -8,6 +7,7 @@ let debug = document.getElementById('debug');
 let body = document.body;
 let scaleTransform, xTransform, yTransform;
 let scrollPercent = 0;
+let scrollPos = 0;
 let maxScale = 10;
 let timelineX, timelineY, timelineZ, timelineS, timelineL, timelineCol;
 let closest, isScrolling, textCoord;
@@ -17,6 +17,7 @@ window.scrollTo({top: -50, left: 0, behavior: 'smooth'});
 
 window.onscroll = () => {
     let maxScroll = body.clientHeight - window.innerHeight;
+    scrollPos = window.scrollY / maxScroll;
     scrollPercent = Math.min(100, Math.max(0, Math.round(window.scrollY / maxScroll * 100)));
     
     isScrolling = true;
@@ -107,15 +108,16 @@ function draw(){
     //    linea.style.strokeDashoffset = Number(timelineL.valueAt(scrollPercentTimesTen));
     //}
     //textCoord.html(viewBoxArgs);
-    if (scrollPercent > 60) {  
-        uyPath.style.opacity = map(scrollPercent, 60, 100, 0, 1, true);
+
+    if (scrollPercent >= 30 && scrollPercent < 45) {
+        show(zoom2);
+    }else{
+        fade(zoom2);
     }
     animateLines();
     
-
-    timelineS.currentTime = scrollPercent * 0.01;
     if (!isScrolling) { 
-        timelineS.currentTime = scrollPercent * 0.01;
+        timelineS.currentTime = scrollPos;
         let scrollToY = calcularScrollYSegunPercent(timelineS.getClosestKeyframe().t * 100);
         window.scrollTo({top: scrollToY, left: 0, behavior: 'smooth'});
         
@@ -125,46 +127,67 @@ function draw(){
 
 }
 
+function setLineAnimation(lineToChange, animationName, animationDuration, animationDelay) {
+    lineToChange.style.animationName = animationName;
+    lineToChange.style.animationDuration = animationDuration;
+    lineToChange.style.animationDelay = animationDelay;
+}
+function setLineTransparency(lineToChange, propertyName, transitionDuration, transitionDelay) {
+    lineToChange.style.transitionProperty = propertyName;
+    lineToChange.style.transitionDuration = transitionDuration;
+    lineToChange.style.transitionDelay = transitionDelay;
+}
 function animateLines(){
     
-    if (scrollPercent < 30 || scrollPercent > 35){
-        lineas.style.opacity = '0';
-        for (const linea of lineasChild) {
-            linea.style.animation = 'none';
-        }
-    }else{
-        lineas.style.opacity = '1';
+    if (scrollPercent >= 30 && scrollPercent < 45) {
         for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {
-            if (lineaI >= 3) {
-                lineasChild[lineaI].style.animation = 'lineaLeft';
-            }else{
-                lineasChild[lineaI].style.animation = 'lineaRight';
+            switch (lineaI) {
+                case 0:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '0ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '250ms', '0ms');
+                    break;
+                case 1:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '250ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '500ms', '250ms')
+                    
+                    break;
+                case 2:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '500ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '750ms', '500ms')
+                    
+                    break;
+                case 3:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '500ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '750ms', '500ms')
+                    
+                    break;
+                case 4:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '750ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '1000ms', '750ms')
+                    
+                    break;
+                case 5:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '1000ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '1250ms', '1000ms')
+                    
+                    break;
+                case 6:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '1000ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '1250ms', '1000ms')
+                    
+                    break;
+                default:
+                    break;
             }
-            lineasChild[lineaI].style.animationDuration = 1000 * lineaI + 'ms';
+            lineasChild[lineaI].style.opacity = 1;
+        }
+    } else {
+        for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {
+            setLineTransparency(lineasChild[lineaI], 'opacity', '0ms', '0ms');
+            setLineAnimation(lineasChild[lineaI], 'none', '0ms', '0ms')
+            lineasChild[lineaI].style.opacity = 0;
         }
         
-
-    }
-
-}
-
-function getOrientationWithIndex(index){
-    switch (index) {
-        case 1:
-            return "lineaR";
-        case 2:
-            return "lineaR";
-        case 3:
-            return "750ms";
-        case 4:
-            
-            return "1s";
-        case 5:
-            
-            return "1250ms";
-    
-        default:
-            return "0";
     }
 }
 
