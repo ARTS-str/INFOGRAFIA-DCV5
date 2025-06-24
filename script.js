@@ -36,50 +36,59 @@ function setup(){
     noCanvas();
     //POS x
     timelineX = new Timeline();
+    //CONTEXTO
+    timelineX.addKeyframe(0.11, 0);
     //CENTROAMERICA
-    timelineX.addKeyframe(0.15, 622);
+    timelineX.addKeyframe(0.22, 299);
     //LATAM
-    timelineX.addKeyframe(0.3, 481);
-    //URUGUAY
-    timelineX.addKeyframe(0.45, 1025);
+    timelineX.addKeyframe(0.33, 170);
+    //UY
+    timelineX.addKeyframe(0.44, 907);
     //CHUY
-    timelineX.addKeyframe(0.6, 1079);
+    timelineX.addKeyframe(0.55, 997);
     
     timelineX.setAllValues(new Keyframe(0, 0), new Keyframe(1, 0));
 
     //POS Y
     timelineY = new Timeline();
+    //CONTEXTO
+    timelineY.addKeyframe(0.11, 904);
     //CENTROAMERICA
-    timelineY.addKeyframe(0.15, 1936);
+    timelineY.addKeyframe(0.22, 1908);
     //LATAM
-    timelineY.addKeyframe(0.3, 1936);
-    //URUGUAY
-    timelineY.addKeyframe(0.45, 2360);
+    timelineY.addKeyframe(0.33, 1839);
+    //UY
+    timelineY.addKeyframe(0.44, 2413);
     //CHUY
-    timelineY.addKeyframe(0.6, 2386);
+    timelineY.addKeyframe(0.55, 2450);
     timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 2700));
 
     //ZOOM
     timelineZ = new Timeline();
+    //CONTEXTO
+    timelineZ.addKeyframe(0.11, 1);
     //CENTROAMERICA
-    timelineZ.addKeyframe(0.15, 0.40);
+    timelineZ.addKeyframe(0.22, 0.57);
     //LATAM
-    timelineZ.addKeyframe(0.3, 0.60);
+    timelineZ.addKeyframe(0.33, 0.82);
     //URUGUAY
-    timelineZ.addKeyframe(0.45, 0.07);
-    //URUGUAY
-    timelineZ.addKeyframe(0.6, 0.03);
+    timelineZ.addKeyframe(0.44, 0.1);
+    //CHUY
+    timelineZ.addKeyframe(0.55, 0.04);
 
     timelineZ.setAllValues(new Keyframe(0, 1), new Keyframe(1, 1));
 
     //PARADAS
     timelineS = new Timeline();
     timelineS.addKeyframe(0, 0);
-    timelineS.addKeyframe(0.15, 0);
-    timelineS.addKeyframe(0.3, 0);
-    timelineS.addKeyframe(0.45, 0);
-    timelineS.addKeyframe(0.6, 0);
-    timelineS.addKeyframe(0.75, 0);
+    timelineS.addKeyframe(0.11, 0);
+    timelineS.addKeyframe(0.22, 0);
+    timelineS.addKeyframe(0.33, 0);
+    timelineS.addKeyframe(0.44, 0);
+    timelineS.addKeyframe(0.55, 0);
+    timelineS.addKeyframe(0.66, 0);
+    timelineS.addKeyframe(0.77, 0);
+    timelineS.addKeyframe(0.88, 0);
     timelineS.addKeyframe(1, 0);
 
     //LINEAS
@@ -102,13 +111,27 @@ function setup(){
 function draw(){
     let scrollPercentTimesTen = Math.trunc(scrollPos * 1000);
     
-    let viewBoxArgs = timelineX.valueAt(scrollPercentTimesTen) +' '+ timelineY.valueAt(scrollPercentTimesTen)  +' '+ 1920.04 * timelineZ.valueAt(scrollPercentTimesTen) + ' ' + 3612.6 * timelineZ.valueAt(scrollPercentTimesTen)
+    let viewBoxArgs = timelineX.valueAt(scrollPercentTimesTen) +' '+ timelineY.valueAt(scrollPercentTimesTen)  +' '+ 1920 * timelineZ.valueAt(scrollPercentTimesTen) + ' ' + 5409.41 * timelineZ.valueAt(scrollPercentTimesTen)
     currentMap.setAttribute('viewBox', viewBoxArgs);
-
-    if (scrollPercent >= 30 && scrollPercent < 45) {
+    if (scrollPercent >= 22 && scrollPercent < 33) {
+        show(zoom1);
+    }else{
+        fade(zoom1);
+    }
+    if (scrollPercent >= 33 && scrollPercent < 44) {
         show(zoom2);
     }else{
         fade(zoom2);
+    }
+    if (scrollPercent >= 44 && scrollPercent < 55) {
+        show(zoom3);
+    }else{
+        fade(zoom3);
+    }
+    if (scrollPercent >= 55 && scrollPercent < 66) {
+        show(zoom4);
+    }else{
+        fade(zoom4);
     }
     animateLines();
     

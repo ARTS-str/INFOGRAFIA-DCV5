@@ -17,6 +17,14 @@ html{
 #Zoom2{
     transition: opacity 100ms ease-in-out;
 }
+#MAPA{
+    position: relative;
+    z-index: 0;
+}
+#ZOOMS{
+    position: relative;
+    z-index: 2;
+}
 /*
 #CUBA_A_RR{
     opacity: 0;
