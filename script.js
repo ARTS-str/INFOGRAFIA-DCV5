@@ -12,7 +12,6 @@ let maxScale = 10;
 let timelineX, timelineY, timelineZ, timelineS, timelineL, timelineCol;
 let closest, isScrolling, textCoord;
 
-
 window.scrollTo({top: -50, left: 0, behavior: 'smooth'});
 
 window.onscroll = () => {
@@ -27,6 +26,7 @@ window.onscrollend = () => {
         isScrolling = false;
     }, 500);
 }
+
 
 function preload() {
     currentMap = latamMap;
@@ -100,14 +100,10 @@ function setup(){
 }
 
 function draw(){
-    //debug.innerHTML = scrollPercent;
-    let scrollPercentTimesTen = scrollPercent*10;
+    let scrollPercentTimesTen = Math.trunc(scrollPos * 1000);
+    
     let viewBoxArgs = timelineX.valueAt(scrollPercentTimesTen) +' '+ timelineY.valueAt(scrollPercentTimesTen)  +' '+ 1920.04 * timelineZ.valueAt(scrollPercentTimesTen) + ' ' + 3612.6 * timelineZ.valueAt(scrollPercentTimesTen)
     currentMap.setAttribute('viewBox', viewBoxArgs);
-    //for (let linea of lineas) {
-    //    linea.style.strokeDashoffset = Number(timelineL.valueAt(scrollPercentTimesTen));
-    //}
-    //textCoord.html(viewBoxArgs);
 
     if (scrollPercent >= 30 && scrollPercent < 45) {
         show(zoom2);
@@ -147,31 +143,51 @@ function animateLines(){
                     setLineAnimation(lineasChild[lineaI], 'lineaRight', '250ms', '0ms');
                     break;
                 case 1:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '0ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '250ms', '0ms')
+                    
+                    break;
+                case 2:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '0ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '250ms', '0ms')
+                    
+                    break;
+                case 3:
                     setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '250ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaRight', '500ms', '250ms')
                     
                     break;
-                case 2:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '500ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '750ms', '500ms')
+                case 4:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '250ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '500ms', '250ms')
                     
                     break;
-                case 3:
+                case 5:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '250ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '500ms', '250ms')
+                    
+                    break;
+                case 6:
                     setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '500ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaLeft', '750ms', '500ms')
                     
                     break;
-                case 4:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '750ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '1000ms', '750ms')
+                case 7:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '500ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '750ms', '500ms')
                     
                     break;
-                case 5:
+                case 8:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '500ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '750ms', '500ms')
+                    
+                    break;
+                case 9:
                     setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '1000ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaLeft', '1250ms', '1000ms')
                     
                     break;
-                case 6:
+                case 10:
                     setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '1000ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaLeft', '1250ms', '1000ms')
                     
