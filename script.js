@@ -46,6 +46,8 @@ function setup(){
     timelineX.addKeyframe(0.44, 907);
     //CHUY
     timelineX.addKeyframe(0.55, 997);
+    //TESTIMONIOS
+    timelineX.addKeyframe(0.66, 0);
     
     timelineX.setAllValues(new Keyframe(0, 0), new Keyframe(1, 0));
 
@@ -61,7 +63,13 @@ function setup(){
     timelineY.addKeyframe(0.44, 2413);
     //CHUY
     timelineY.addKeyframe(0.55, 2450);
-    timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 2700));
+    //TESTIMONIOS
+    timelineY.addKeyframe(0.66, 2706);
+    //SITUACION
+    timelineY.addKeyframe(0.77, 3607);
+    //CONCLUSION
+    timelineY.addKeyframe(0.88, 4508);
+    timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 4508));
 
     //ZOOM
     timelineZ = new Timeline();
@@ -75,6 +83,8 @@ function setup(){
     timelineZ.addKeyframe(0.44, 0.1);
     //CHUY
     timelineZ.addKeyframe(0.55, 0.04);
+    //TESTIMONIOS
+    timelineZ.addKeyframe(0.66, 1);
 
     timelineZ.setAllValues(new Keyframe(0, 1), new Keyframe(1, 1));
 
@@ -134,7 +144,7 @@ function draw(){
         fade(zoom4);
     }
     animateLines();
-    
+    console.log();
     if (!isScrolling) { 
         timelineS.currentTime = scrollPos;
         let scrollToY = calcularScrollYSegunPercent(timelineS.getClosestKeyframe().t * 100);
