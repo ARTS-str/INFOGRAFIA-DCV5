@@ -186,7 +186,6 @@ function draw(){
     }
     let colors = ['#291011', '#d6d6d6'];
     body.style.backgroundColor = colors[round(timelineCol.valueAt(scrollPercentTimesTen))];
-    console.log(window.scrollY)
 }
 
 function setLineAnimation(lineToChange, animationName, animationDuration, animationDelay) {
@@ -284,7 +283,6 @@ function calcularScrollYSegunPercent(sPercent){
 }
 
 function escrolearA(posicionY) {
-    console.log(posicionY, isAutoScrolling);
     isAutoScrolling = false;
     window.scrollTo({top: posicionY, left: 0, behavior: 'smooth'});
     setTimeout(() => {
