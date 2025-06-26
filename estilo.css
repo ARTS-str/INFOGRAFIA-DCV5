@@ -3,8 +3,28 @@
     src: url(type/Covik-Sans-Black.ttf);
 }
 @font-face {
+    font-family: CovikSans-Medium;
+    src: url(type/Covik-Sans-Medium.ttf);
+}
+@font-face {
+    font-family: CovikSans-Bold;
+    src: url(type/Covik-Sans-Bold.ttf);
+}
+@font-face {
+    font-family: CovikSans-SemiboldItalic;
+    src: url(type/Covik-Sans-Semibold-Italic.ttf);
+}
+@font-face {
+    font-family: CovikSans-Semibold;
+    src: url(type/Covik-Sans-Semibold.ttf);
+}
+@font-face {
     font-family: NeueFrutigerWorld-Regular;
     src: url(type/NeueFrutigerWorld-Regular.otf);
+}
+@font-face {
+    font-family: NeueFrutigerWorld-It;
+    src: url(type/NeueFrutigerWorld-It.otf);
 }
 @font-face {
     font-family: NeueFrutigerWorld-Bold;
@@ -21,6 +41,14 @@
 @font-face {
     font-family: NeueFrutigerWorld-UltLt;
     src: url(type/NeueFrutigerWorld-UltLt.otf);
+}
+@font-face {
+    font-family: NeueFrutigerWorld-Medium;
+    src: url(type/NeueFrutigerWorld-Medium.otf);
+}
+@font-face {
+    font-family: NeueFrutigerWorld-BoldIt;
+    src: url(type/NeueFrutigerWorld-BoldIt.otf);
 }
 @font-face {
     font-family: NeueFrutigerWorld-Black;
