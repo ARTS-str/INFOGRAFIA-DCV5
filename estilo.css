@@ -1,10 +1,34 @@
 @font-face {
-    font-family: Covik Sans;
-    src: url(type/Covik-Sans-Bold.ttf);
+    font-family: CovikSans-Black;
+    src: url(type/Covik-Sans-Black.ttf);
 }
 @font-face {
-    font-family: Neue Frutiger World;
+    font-family: NeueFrutigerWorld-Regular;
     src: url(type/NeueFrutigerWorld-Regular.otf);
+}
+@font-face {
+    font-family: NeueFrutigerWorld-Bold;
+    src: url(type/NeueFrutigerWorld-Bold.otf);
+}
+@font-face {
+    font-family: NeueFrutigerWorld-Thin;
+    src: url(type/NeueFrutigerWorld-Thin.otf);
+}
+@font-face {
+    font-family: NeueFrutigerWorld-ThinIt;
+    src: url(type/NeueFrutigerWorld-ThinIt.otf);
+}
+@font-face {
+    font-family: NeueFrutigerWorld-UltLt;
+    src: url(type/NeueFrutigerWorld-UltLt.otf);
+}
+@font-face {
+    font-family: NeueFrutigerWorld-Black;
+    src: url(type/NeueFrutigerWorld-Black.otf);
+}
+@font-face {
+    font-family: NeueFrutigerWorld-XtraBlk;
+    src: url(type/NeueFrutigerWorld-XtraBlk.otf);
 }
 *{
     margin: 0;
@@ -12,6 +36,31 @@
 }
 html{
     scrollbar-color: #aaaaaaca #aaaaaa00;
+}
+
+.regular{
+    font-family: NeueFrutigerWorld-Regular, 'Neue Frutiger World';
+}
+.bold{
+    font-family: NeueFrutigerWorld-Bold, 'Neue Frutiger World';
+}
+.thin{
+    font-family: NeueFrutigerWorld-Thin, 'Neue Frutiger World';
+}
+.thinItalic{
+    font-family: NeueFrutigerWorld-ThinIt, 'Neue Frutiger World';
+}
+.uLight{
+    font-family: NeueFrutigerWorld-UltLt, 'Neue Frutiger World';
+}
+.black{
+    font-family: NeueFrutigerWorld-Black, 'Neue Frutiger World';
+}
+.xBlack{
+    font-family: NeueFrutigerWorld-XtraBlk, 'Neue Frutiger World';
+}
+.titulo{
+    font-family: CovikSans-Black, 'Covik Sans';
 }
 
 #Zoom2{
@@ -25,42 +74,35 @@ html{
     position: relative;
     z-index: 2;
 }
-/*
-#CUBA_A_RR{
-    opacity: 0;
-    transition: opacity 1000ms ease-in-out;
+#flecha{
+    cursor: pointer;
+    animation: hover 1s ease-in-out alternate infinite;
+}
+#flecha:hover{
+    animation-play-state: paused;
+}
+#UY{
+    transition: opacity 200ms ease-in-out;
+}
+#URUGUAY_c_borde{
+    transition: opacity 200ms ease-in-out;
+}
+#SUDAMERICA{
+    transition: opacity 200ms ease-in-out;
+}
+#CENTROAMERICA{
+    transition: opacity 200ms ease-in-out;
+
+}
+g[id*='Zoom']{
+    transition: opacity 200ms ease-in-out;
+
 }
 
-#RR_A_MANAUS{
-    opacity: 0;
-    transition: opacity 1000ms 1000ms ease-in-out;
+@keyframes hover {
+    from{transform:translateY(-50px)}
+    to{transform:translateY(0px)}
 }
-
-#MANAUS_A_SP{
-    opacity: 0;
-    transition: opacity 1000ms 2000ms ease-in-out;
-}
-
-#MANAUS_A_PORTO_ALEGRE{
-    opacity: 0;
-    transition: opacity 1000ms 2000ms ease-in-out;
-}
-
-#SP_A_PORTO_ALEGRE{
-    opacity: 0;
-    transition: opacity 1000ms 3000s ease-in-out;
-}
-
-#PORTO_ALEGRE_A_RIVERA{
-    opacity: 0;
-    transition: opacity 1000ms 4000ms ease-in-out;
-}
-
-
-#PORTO_ALEGRE_A_CHUY{
-    opacity: 0;
-    transition: opacity 1000ms 4000ms ease-in-out;
-} */
 
 @keyframes lineaRight {
     from{transform: scale(0) rotate(-45deg);}
