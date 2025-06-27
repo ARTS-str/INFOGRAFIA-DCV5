@@ -34,6 +34,7 @@ class Timeline {//objeto de linea de tiempo
             }
         }
         this.timelineValues.push(end)
+        
     }
     lerp(k1, k2, t){
         const span = k2.t - k1.t;
