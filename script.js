@@ -65,10 +65,11 @@ window.onscroll = () => {
             fade(zoom3);
             fade(UY);
         }
-        if (scrollPercent >= 55 && scrollPercent < 70) {
+        if (scrollPercent >= 55 && scrollPercent < 66) {
             show(zoom4);
         }else{
             fade(zoom4);
+            show(UYPre);
         }
     }
     if (scrollPercent >= 33 && scrollPercent < 44) {
@@ -153,10 +154,10 @@ function setup(){
     timelineY.addKeyframe(0.47, 2390);
     //CHUY
     timelineY.addKeyframe(0.55, 2424);
-    timelineY.addKeyframe(0.59, 2424);
+    timelineY.addKeyframe(0.65, 2424);
     //TESTIMONIOS
-    timelineY.addKeyframe(0.70, 2706); 
-    timelineY.addKeyframe(0.74, 2706); 
+    timelineY.addKeyframe(0.70, 1816);
+    timelineY.addKeyframe(0.75, 2706);
     //SITUACION
     timelineY.addKeyframe(0.81, 3607); 
     timelineY.addKeyframe(0.85, 3607);
@@ -180,7 +181,7 @@ function setup(){
     timelineZ.addKeyframe(0.55, 0.04);
     timelineZ.addKeyframe(0.65, 0.04);
     //TESTIMONIOS
-    timelineZ.addKeyframe(0.70, 1);
+    timelineZ.addKeyframe(0.70, 1)
 
     timelineZ.setAllValues(new Keyframe(0, 1), new Keyframe(1, 1));
 
@@ -191,8 +192,8 @@ function setup(){
     timelineS.addKeyframe(0.24, 0);
     timelineS.addKeyframe(0.35, 0);
     timelineS.addKeyframe(0.46, 0);
-    timelineS.addKeyframe(0.57, 0);
-    timelineS.addKeyframe(0.72, 0);
+    timelineS.addKeyframe(0.65, 0);
+    timelineS.addKeyframe(0.75, 0);
     timelineS.addKeyframe(0.83, 0);
     timelineS.addKeyframe(1, 0);
 
