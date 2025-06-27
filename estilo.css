@@ -105,9 +105,11 @@ html{
 #flecha{
     cursor: pointer;
     animation: hover 1s ease-in-out alternate infinite;
+    transition: scale 100ms ease-in-out;
 }
 #flecha:hover{
     animation-play-state: paused;
+    scale: 0.95;
 }
 #UY{
     transition: opacity 200ms ease-in-out;

@@ -17,6 +17,7 @@ let maxScale = 10;
 let timelineX, timelineY, timelineZ, timelineS, timelineL, timelineCol;
 let closest, isScrolling, textCoord;
 let isAutoScrolling = true;
+let linesAreVisible = false;
 
 window.scrollTo({top: -50, left: 0, behavior: 'smooth'});
 
@@ -26,6 +27,41 @@ window.onscroll = () => {
     scrollPercent = Math.min(100, Math.max(0, Math.round(window.scrollY / maxScroll * 100)));
     
     isScrolling = true;
+
+    if (scrollPercent >= 22 && scrollPercent < 33) {
+        show(zoom1);
+        show(sudamerica);
+        show(CENTROAMERICA);
+    }else{
+        fade(zoom1);
+    }
+    if (scrollPercent >= 33 && scrollPercent < 44) {
+        fade(sudamerica);
+        fade(CENTROAMERICA);
+        show(zoom2);
+        show(UYPre);
+    }else{
+        fade(zoom2);
+    }
+    if (scrollPercent >= 44 && scrollPercent < 55) {
+        fade(UYPre);
+        show(zoom3);
+        show(UY);
+    }else{
+        fade(zoom3);
+        fade(UY);
+    }
+    if (scrollPercent >= 55 && scrollPercent < 66) {
+        show(zoom4);
+    }else{
+        fade(zoom4);
+    }
+    
+    if (scrollPercent >= 30 && scrollPercent < 45) {
+        animateLines();
+    } else {
+        hideLines();
+    }
 };
 window.onscrollend = () => {
     setTimeout(() => {
@@ -58,7 +94,7 @@ function setup(){
     timelineX.addKeyframe(0.55, 1031);
     timelineX.addKeyframe(0.59, 1031);
     //TESTIMONIOS
-    timelineX.addKeyframe(0.66, 0);
+    timelineX.addKeyframe(0.77, 0);
     
     timelineX.setAllValues(new Keyframe(0, 0), new Keyframe(1, 0));
 
@@ -80,13 +116,11 @@ function setup(){
     timelineY.addKeyframe(0.55, 2424);
     timelineY.addKeyframe(0.59, 2424);
     //TESTIMONIOS
-    timelineY.addKeyframe(0.66, 2706);
-    timelineY.addKeyframe(0.67, 2706);
+    timelineY.addKeyframe(0.77, 2706); 
+    timelineY.addKeyframe(0.81, 2706); 
     //SITUACION
-    timelineY.addKeyframe(0.77, 3607);
-    timelineY.addKeyframe(0.81, 3607);
-    //CONCLUSION
-    timelineY.addKeyframe(0.88, 4508);
+    timelineY.addKeyframe(0.88, 3607); 
+    timelineY.addKeyframe(0.92, 3607);
     timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 4508));
 
     //ZOOM
@@ -107,7 +141,7 @@ function setup(){
     timelineZ.addKeyframe(0.55, 0.04);
     timelineZ.addKeyframe(0.59, 0.04);
     //TESTIMONIOS
-    timelineZ.addKeyframe(0.66, 1);
+    timelineZ.addKeyframe(0.77, 1);
 
     timelineZ.setAllValues(new Keyframe(0, 1), new Keyframe(1, 1));
 
@@ -119,7 +153,6 @@ function setup(){
     timelineS.addKeyframe(0.33, 0);
     timelineS.addKeyframe(0.44, 0);
     timelineS.addKeyframe(0.55, 0);
-    timelineS.addKeyframe(0.66, 0);
     timelineS.addKeyframe(0.77, 0);
     timelineS.addKeyframe(0.88, 0);
     timelineS.addKeyframe(1, 0);
@@ -139,7 +172,7 @@ function setup(){
     timelineCol.addKeyframe(0.11, 0);
     timelineCol.addKeyframe(0.22, 1);
     timelineCol.addKeyframe(0.55, 1);
-    timelineCol.addKeyframe(0.66, 0);
+    timelineCol.addKeyframe(0.77, 0);
     timelineCol.setAllValues(new Keyframe(0, 0), new Keyframe(1, 0));
 
 }
@@ -149,35 +182,8 @@ function draw(){
     
     let viewBoxArgs = timelineX.valueAt(scrollPercentTimesTen) +' '+ timelineY.valueAt(scrollPercentTimesTen)  +' '+ 1920 * timelineZ.valueAt(scrollPercentTimesTen) + ' ' + 5409.41 * timelineZ.valueAt(scrollPercentTimesTen)
     currentMap.setAttribute('viewBox', viewBoxArgs);
-    if (scrollPercent >= 22 && scrollPercent < 33) {
-        show(zoom1);
-        show(sudamerica);
-        show(CENTROAMERICA);
-    }else{
-        fade(zoom1);
-    }
-    if (scrollPercent >= 33 && scrollPercent < 44) {
-        fade(sudamerica);
-        fade(CENTROAMERICA);
-        show(zoom2);
-        show(UYPre);
-    }else{
-        fade(zoom2);
-    }
-    if (scrollPercent >= 44 && scrollPercent < 55) {
-        fade(UYPre);
-        show(zoom3);
-        show(UY);
-    }else{
-        fade(zoom3);
-        fade(UY);
-    }
-    if (scrollPercent >= 55 && scrollPercent < 66) {
-        show(zoom4);
-    }else{
-        fade(zoom4);
-    }
-    animateLines();
+    
+
     if (!isScrolling && isAutoScrolling) { 
         timelineS.currentTime = scrollPos;
         let scrollToY = calcularScrollYSegunPercent(timelineS.getClosestKeyframe().t * 100);
@@ -198,82 +204,81 @@ function setLineTransparency(lineToChange, propertyName, transitionDuration, tra
     lineToChange.style.transitionDuration = transitionDuration;
     lineToChange.style.transitionDelay = transitionDelay;
 }
+function hideLines(){
+    for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {
+        setLineTransparency(lineasChild[lineaI], 'opacity', '0ms', '0ms');
+        setLineAnimation(lineasChild[lineaI], 'none', '0ms', '0ms')
+        lineasChild[lineaI].style.opacity = 0;
+    }  
+}
 function animateLines(){
-    
-    if (scrollPercent >= 30 && scrollPercent < 45) {
-        for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {
+    let duracionInicialOpacidad = '500ms';
+    let duracion = 500;
+    for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {
             switch (lineaI) {
                 case 0:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '500ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '250ms', '500ms');
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 3 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 2 + 'ms', duracion * 3 + 'ms');
                     break;
                 case 1:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '500ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '250ms', '500ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 3 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 2 + 'ms', duracion * 3 + 'ms');
                     
                     break;
                 case 2:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '500ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '250ms', '500ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 3 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 2 + 'ms', duracion * 3 + 'ms');
                     
                     break;
                 case 3:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '750ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '500ms', '750ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
                     
                     break;
                 case 4:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '750ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '500ms', '750ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
                     
                     break;
                 case 5:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '750ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '500ms', '750ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
                     
                     break;
                 case 6:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '750ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '500ms', '750ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
                     
                     break;
                 case 7:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '750ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '500ms', '750ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
                     
                     break;
                 case 8:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '750ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', '500ms', '750ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
                     
                     break;
                 case 9:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '1000ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '750ms', '1000ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 5 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', duracion * 4 + 'ms', duracion * 5 + 'ms');
                     
                     break;
                 case 10:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '1000ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '750ms', '1000ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 5 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', duracion * 4 + 'ms', duracion * 5 + 'ms');
                     
                     break;
                 case 11:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', '100ms', '1000ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', '750ms', '1000ms')
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 5 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', duracion * 4 + 'ms', duracion * 5 + 'ms');
                     
                     break;
                 default:
                     break;
             }
             lineasChild[lineaI].style.opacity = 1;
-        }
-    } else {
-        for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {
-            setLineTransparency(lineasChild[lineaI], 'opacity', '0ms', '0ms');
-            setLineAnimation(lineasChild[lineaI], 'none', '0ms', '0ms')
-            lineasChild[lineaI].style.opacity = 0;
-        }
-        
     }
 }
 
