@@ -176,7 +176,7 @@ function setup(){
     //CONCLUSION
     timelineY.addKeyframe(0.9, 4400);
 
-    timelineY.setAllValues(new Keyframe(0, -100), new Keyframe(1, 4810));
+    timelineY.setAllValues(new Keyframe(0, -100), new Keyframe(1, 4850));
 
     //ZOOM
     timelineZ = new Timeline();
