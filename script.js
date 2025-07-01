@@ -35,10 +35,14 @@ function mobileCheck() {
 window.onscroll = () => {
     let maxScroll = body.clientHeight - window.innerHeight;
     scrollPos = window.scrollY / maxScroll;
-    scrollPercent = Math.min(100, Math.max(0, Math.round(window.scrollY / maxScroll * 100)));
+    scrollPercent = Math.min(100, Math.max(0, Math.round(scrollPos * 100)));
     console.log(scrollPercent);
     
     isScrolling = true;
+    elementosSegunScroll()
+};
+
+function elementosSegunScroll() {
     if (scrollPercent >= 0 && scrollPercent < 22 || scrollPercent >= 70 && scrollPercent <= 100) {
         body.style.backgroundColor = colors[0]; 
     }else{ 
@@ -97,7 +101,7 @@ window.onscroll = () => {
         clearTimeout(animateTimeout);
         clearTimeout(scrollDelayTimeout);
     }
-};
+}
 
 if (mobileCheck()) {
     screenWidthNotification.innerHTML = 'Por favor, rota tu dispositivo.'
@@ -149,41 +153,41 @@ function setup(){
     //POS Y
     timelineY = new Timeline();
     //CONTEXTO
-    timelineY.addKeyframe(0.13, 974);
+    timelineY.addKeyframe(0.13, 820);
     //CENTROAMERICA
-    timelineY.addKeyframe(0.24, 1950);
+    timelineY.addKeyframe(0.24, 1838);
     //LATAM
-    timelineY.addKeyframe(0.35, 1900);
+    timelineY.addKeyframe(0.35, 1730);
     //UY
-    timelineY.addKeyframe(0.46, 2450);
+    timelineY.addKeyframe(0.46, 2430);
     //CHUY
-    timelineY.addKeyframe(0.60, 2482);
+    timelineY.addKeyframe(0.60, 2475);
     //TESTIMONIOS
     timelineY.addKeyframe(0.70, 1816);
-    timelineY.addKeyframe(0.75, 2800);
+    timelineY.addKeyframe(0.75, 2650);
     //SITUACION
-    timelineY.addKeyframe(0.83, 3700); 
+    timelineY.addKeyframe(0.83, 3550); 
     //CONCLUSION
-    timelineY.addKeyframe(0.9, 4590);
+    timelineY.addKeyframe(0.9, 4400);
 
-    timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 5005));
+    timelineY.setAllValues(new Keyframe(0, -100), new Keyframe(1, 4810));
 
     //ZOOM
     timelineZ = new Timeline();
     //CONTEXTO
-    timelineZ.addKeyframe(0.13, 1);
+    timelineZ.addKeyframe(0.13, 1.000);
     //CENTROAMERICA
-    timelineZ.addKeyframe(0.24, 0.7);
+    timelineZ.addKeyframe(0.24, 0.700);
     //LATAM
-    timelineZ.addKeyframe(0.35, 1);
+    timelineZ.addKeyframe(0.35, 1.000);
     //URUGUAY
     timelineZ.addKeyframe(0.46, 0.125);
     //CHUY
-    timelineZ.addKeyframe(0.60, 0.05);
+    timelineZ.addKeyframe(0.60, 0.050);
     //TESTIMONIOS
-    timelineZ.addKeyframe(0.70, 1)
+    timelineZ.addKeyframe(0.70, 1.000)
 
-    timelineZ.setAllValues(new Keyframe(0, 1), new Keyframe(1, 1));
+    timelineZ.setAllValues(new Keyframe(0, 1.000), new Keyframe(1, 1.000));
 
     //PARADAS
     timelineS = new Timeline();
@@ -191,7 +195,7 @@ function setup(){
     timelineS.addKeyframe(0.13, 0);
     timelineS.addKeyframe(0.24, 0);
     timelineS.addKeyframe(0.35, 0);
-    timelineS.addKeyframe(0.46, 0);
+    timelineS.addKeyframe(0.462, 0);
     timelineS.addKeyframe(0.60, 0);
     timelineS.addKeyframe(0.75, 0);
     timelineS.addKeyframe(0.83, 0);
@@ -213,7 +217,7 @@ function setup(){
 function draw(){
     let scrollPercentTimesTen = Math.min(1000, Math.max(0, Math.trunc(scrollPos * 1000)));
     
-    let viewBoxArgs = timelineX.valueAt(scrollPercentTimesTen) +' '+ timelineY.valueAt(scrollPercentTimesTen)  +' '+ 1920 * timelineZ.valueAt(scrollPercentTimesTen) + ' ' + 5409.41 * timelineZ.valueAt(scrollPercentTimesTen)
+    let viewBoxArgs = timelineX.valueAt(scrollPercentTimesTen) +' '+ timelineY.valueAt(scrollPercentTimesTen)  +' '+ 1920 * timelineZ.valueAt(scrollPercentTimesTen) + ' ' + 5784.413 * timelineZ.valueAt(scrollPercentTimesTen)
     currentMap.setAttribute('viewBox', viewBoxArgs);
 
     if (!isScrolling && isAutoScrolling) { 
