@@ -91,6 +91,18 @@ html{
     font-family: CovikSans-Black, 'Covik Sans';
 }
 
+#SUDAMERICA{
+    transition: opacity 200ms ease-in-out;
+}
+#SUDAMERICA-MARRON{
+    transition: opacity 200ms ease-in-out;
+}
+#CENTROAMERICA{
+    transition: opacity 200ms ease-in-out;
+}
+#CENTROAMERICA-MARRON{
+    transition: opacity 200ms ease-in-out;
+}
 #Zoom2{
     transition: opacity 100ms ease-in-out;
 }

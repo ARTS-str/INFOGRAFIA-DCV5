@@ -59,7 +59,7 @@ window.onscroll = () => {
         }else{
             fade(zoom2);
         }
-        if (scrollPercent >= 44 && scrollPercent < 55) {
+        if (scrollPercent >= 44 && scrollPercent < 58) {
             show(zoom3);
             show(UY_Dept);
             show(sudamericaMarron);
@@ -67,7 +67,7 @@ window.onscroll = () => {
             fade(zoom3);
             fade(UY_Dept);
         }
-        if (scrollPercent >= 55 && scrollPercent < 66) {
+        if (scrollPercent >= 58 && scrollPercent < 61) {
             show(zoom4);
             show(UY);
             fade(sudamericaMarron);
@@ -132,20 +132,15 @@ function setup(){
     //POS x
     timelineX = new Timeline();
     //CONTEXTO
-    timelineX.addKeyframe(0.11, 0);
-    timelineX.addKeyframe(0.15, 0);
+    timelineX.addKeyframe(0.13, 0);
     //CENTROAMERICA
-    timelineX.addKeyframe(0.22, 159);
-    timelineX.addKeyframe(0.26, 159);
+    timelineX.addKeyframe(0.24, 159);
     //LATAM
-    timelineX.addKeyframe(0.33, 0);
-    timelineX.addKeyframe(0.37, 0);
+    timelineX.addKeyframe(0.35, 0);
     //UY
-    timelineX.addKeyframe(0.44, 897);
-    timelineX.addKeyframe(0.48, 897);
+    timelineX.addKeyframe(0.46, 897);
     //CHUY
-    timelineX.addKeyframe(0.55, 1006);
-    timelineX.addKeyframe(0.65, 1006);
+    timelineX.addKeyframe(0.60, 1006);
     //TESTIMONIOS
     timelineX.addKeyframe(0.70, 0);
     
@@ -154,48 +149,37 @@ function setup(){
     //POS Y
     timelineY = new Timeline();
     //CONTEXTO
-    timelineY.addKeyframe(0.11, 974);
-    timelineY.addKeyframe(0.15, 974);
+    timelineY.addKeyframe(0.13, 974);
     //CENTROAMERICA
-    timelineY.addKeyframe(0.22, 1950);
-    timelineY.addKeyframe(0.26, 1950);
+    timelineY.addKeyframe(0.24, 1950);
     //LATAM
-    timelineY.addKeyframe(0.33, 1900);
-    timelineY.addKeyframe(0.37, 1900);
+    timelineY.addKeyframe(0.35, 1900);
     //UY
-    timelineY.addKeyframe(0.44, 2450);
-    timelineY.addKeyframe(0.47, 2450);
+    timelineY.addKeyframe(0.46, 2450);
     //CHUY
-    timelineY.addKeyframe(0.55, 2482);
-    timelineY.addKeyframe(0.65, 2482);
+    timelineY.addKeyframe(0.60, 2482);
     //TESTIMONIOS
     timelineY.addKeyframe(0.70, 1816);
     timelineY.addKeyframe(0.75, 2800);
     //SITUACION
-    timelineY.addKeyframe(0.81, 3700); 
-    timelineY.addKeyframe(0.85, 3700);
+    timelineY.addKeyframe(0.83, 3700); 
     //CONCLUSION
-    timelineY.addKeyframe(0.91, 4750);
+    timelineY.addKeyframe(0.9, 4590);
 
     timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 5005));
 
     //ZOOM
     timelineZ = new Timeline();
     //CONTEXTO
-    timelineZ.addKeyframe(0.11, 1);
-    timelineZ.addKeyframe(0.15, 1);
+    timelineZ.addKeyframe(0.13, 1);
     //CENTROAMERICA
-    timelineZ.addKeyframe(0.22, 0.7);
-    timelineZ.addKeyframe(0.26, 0.7);
+    timelineZ.addKeyframe(0.24, 0.7);
     //LATAM
-    timelineZ.addKeyframe(0.33, 1);
-    timelineZ.addKeyframe(0.37, 1);
+    timelineZ.addKeyframe(0.35, 1);
     //URUGUAY
-    timelineZ.addKeyframe(0.44, 0.125);
-    timelineZ.addKeyframe(0.48, 0.125);
+    timelineZ.addKeyframe(0.46, 0.125);
     //CHUY
-    timelineZ.addKeyframe(0.55, 0.05);
-    timelineZ.addKeyframe(0.65, 0.05);
+    timelineZ.addKeyframe(0.60, 0.05);
     //TESTIMONIOS
     timelineZ.addKeyframe(0.70, 1)
 
@@ -208,7 +192,7 @@ function setup(){
     timelineS.addKeyframe(0.24, 0);
     timelineS.addKeyframe(0.35, 0);
     timelineS.addKeyframe(0.46, 0);
-    timelineS.addKeyframe(0.65, 0);
+    timelineS.addKeyframe(0.60, 0);
     timelineS.addKeyframe(0.75, 0);
     timelineS.addKeyframe(0.83, 0);
     timelineS.addKeyframe(0.9, 0);
