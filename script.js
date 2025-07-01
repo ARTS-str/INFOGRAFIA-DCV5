@@ -1,7 +1,10 @@
 let currentMap;
 let latamMap = document.getElementById('LATAM');
+let sudamericaMarron = document.getElementById('SUDAMERICA-MARRON');
+let centroamericaMarron = document.getElementById('CENTROAMERICA-MARRON');
 let UYPre = document.getElementById('UY');
 let UY = document.getElementById('URUGUAY_c_borde');
+let UY_Dept = document.getElementById('uruguay_c_dept');
 let titulo = document.getElementById('texttitulo');
 let lineas = document.getElementById('LINEAS');
 let sudamerica = document.getElementById('SUDAMERICA');
@@ -53,23 +56,33 @@ window.onscroll = () => {
             fade(sudamerica);
             fade(CENTROAMERICA);
             show(zoom2);
-            show(UYPre);
         }else{
             fade(zoom2);
         }
         if (scrollPercent >= 44 && scrollPercent < 55) {
-            fade(UYPre);
             show(zoom3);
-            show(UY);
+            show(UY_Dept);
+            show(sudamericaMarron);
         }else{
             fade(zoom3);
-            fade(UY);
+            fade(UY_Dept);
         }
         if (scrollPercent >= 55 && scrollPercent < 66) {
             show(zoom4);
+            show(UY);
+            fade(sudamericaMarron);
+            fade(sudamerica);
         }else{
+            show(sudamericaMarron);
+            show(centroamericaMarron);
+            fade(UY);
             fade(zoom4);
-            show(UYPre);
+        }
+        if (scrollPercent >= 75) {
+            fade(sudamerica);
+            fade(CENTROAMERICA)
+            fade(sudamericaMarron);
+            fade(sudamerica);
         }
     }
     if (scrollPercent >= 33 && scrollPercent < 44) {
@@ -122,17 +135,17 @@ function setup(){
     timelineX.addKeyframe(0.11, 0);
     timelineX.addKeyframe(0.15, 0);
     //CENTROAMERICA
-    timelineX.addKeyframe(0.22, 334);
-    timelineX.addKeyframe(0.26, 334);
+    timelineX.addKeyframe(0.22, 159);
+    timelineX.addKeyframe(0.26, 159);
     //LATAM
-    timelineX.addKeyframe(0.33, 206);
-    timelineX.addKeyframe(0.37, 206);
+    timelineX.addKeyframe(0.33, 0);
+    timelineX.addKeyframe(0.37, 0);
     //UY
-    timelineX.addKeyframe(0.44, 943);
-    timelineX.addKeyframe(0.48, 943);
+    timelineX.addKeyframe(0.44, 897);
+    timelineX.addKeyframe(0.48, 897);
     //CHUY
-    timelineX.addKeyframe(0.55, 1031);
-    timelineX.addKeyframe(0.65, 1031);
+    timelineX.addKeyframe(0.55, 1006);
+    timelineX.addKeyframe(0.65, 1006);
     //TESTIMONIOS
     timelineX.addKeyframe(0.70, 0);
     
@@ -141,27 +154,30 @@ function setup(){
     //POS Y
     timelineY = new Timeline();
     //CONTEXTO
-    timelineY.addKeyframe(0.11, 904);
-    timelineY.addKeyframe(0.15, 904);
+    timelineY.addKeyframe(0.11, 974);
+    timelineY.addKeyframe(0.15, 974);
     //CENTROAMERICA
-    timelineY.addKeyframe(0.22, 1886);
-    timelineY.addKeyframe(0.26, 1886);
+    timelineY.addKeyframe(0.22, 1950);
+    timelineY.addKeyframe(0.26, 1950);
     //LATAM
-    timelineY.addKeyframe(0.33, 1816);
-    timelineY.addKeyframe(0.37, 1816);
+    timelineY.addKeyframe(0.33, 1900);
+    timelineY.addKeyframe(0.37, 1900);
     //UY
-    timelineY.addKeyframe(0.44, 2390);
-    timelineY.addKeyframe(0.47, 2390);
+    timelineY.addKeyframe(0.44, 2450);
+    timelineY.addKeyframe(0.47, 2450);
     //CHUY
-    timelineY.addKeyframe(0.55, 2424);
-    timelineY.addKeyframe(0.65, 2424);
+    timelineY.addKeyframe(0.55, 2482);
+    timelineY.addKeyframe(0.65, 2482);
     //TESTIMONIOS
     timelineY.addKeyframe(0.70, 1816);
-    timelineY.addKeyframe(0.75, 2706);
+    timelineY.addKeyframe(0.75, 2800);
     //SITUACION
-    timelineY.addKeyframe(0.81, 3607); 
-    timelineY.addKeyframe(0.85, 3607);
-    timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 4508));
+    timelineY.addKeyframe(0.81, 3700); 
+    timelineY.addKeyframe(0.85, 3700);
+    //CONCLUSION
+    timelineY.addKeyframe(0.91, 4750);
+
+    timelineY.setAllValues(new Keyframe(0, 0), new Keyframe(1, 5005));
 
     //ZOOM
     timelineZ = new Timeline();
@@ -169,17 +185,17 @@ function setup(){
     timelineZ.addKeyframe(0.11, 1);
     timelineZ.addKeyframe(0.15, 1);
     //CENTROAMERICA
-    timelineZ.addKeyframe(0.22, 0.57);
-    timelineZ.addKeyframe(0.26, 0.57);
+    timelineZ.addKeyframe(0.22, 0.7);
+    timelineZ.addKeyframe(0.26, 0.7);
     //LATAM
-    timelineZ.addKeyframe(0.33, 0.81);
-    timelineZ.addKeyframe(0.37, 0.81);
+    timelineZ.addKeyframe(0.33, 1);
+    timelineZ.addKeyframe(0.37, 1);
     //URUGUAY
-    timelineZ.addKeyframe(0.44, 0.1);
-    timelineZ.addKeyframe(0.48, 0.1);
+    timelineZ.addKeyframe(0.44, 0.125);
+    timelineZ.addKeyframe(0.48, 0.125);
     //CHUY
-    timelineZ.addKeyframe(0.55, 0.04);
-    timelineZ.addKeyframe(0.65, 0.04);
+    timelineZ.addKeyframe(0.55, 0.05);
+    timelineZ.addKeyframe(0.65, 0.05);
     //TESTIMONIOS
     timelineZ.addKeyframe(0.70, 1)
 
@@ -195,6 +211,7 @@ function setup(){
     timelineS.addKeyframe(0.65, 0);
     timelineS.addKeyframe(0.75, 0);
     timelineS.addKeyframe(0.83, 0);
+    timelineS.addKeyframe(0.9, 0);
     timelineS.addKeyframe(1, 0);
 
     //LINEAS
@@ -250,31 +267,21 @@ function animateLines(){
     let duracion = 500;
     for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {
             switch (lineaI) {
-                case 0:
+                case 10:
                     setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 3 + 'ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 2 + 'ms', duracion * 3 + 'ms');
                     break;
-                case 1:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 3 + 'ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 2 + 'ms', duracion * 3 + 'ms');
-                    
-                    break;
-                case 2:
+                case 9:
                     setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 3 + 'ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 2 + 'ms', duracion * 3 + 'ms');
                     
                     break;
-                case 3:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
+                case 8:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 3 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 2 + 'ms', duracion * 3 + 'ms');
                     
                     break;
-                case 4:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
-                    
-                    break;
-                case 5:
+                case 7:
                     setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
                     
@@ -284,27 +291,32 @@ function animateLines(){
                     setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
                     
                     break;
-                case 7:
+                case 5:
                     setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
                     
                     break;
-                case 8:
+                case 4:
                     setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
                     
                     break;
-                case 9:
+                case 3:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
+                    
+                    break;
+                case 2:
+                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 4 + 'ms');
+                    setLineAnimation(lineasChild[lineaI], 'lineaRight', duracion * 3 + 'ms', duracion * 4 + 'ms');
+                    
+                    break;
+                case 1:
                     setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 5 + 'ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaLeft', duracion * 4 + 'ms', duracion * 5 + 'ms');
                     
                     break;
-                case 10:
-                    setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 5 + 'ms');
-                    setLineAnimation(lineasChild[lineaI], 'lineaLeft', duracion * 4 + 'ms', duracion * 5 + 'ms');
-                    
-                    break;
-                case 11:
+                case 0:
                     setLineTransparency(lineasChild[lineaI], 'opacity', duracionInicialOpacidad, duracion * 5 + 'ms');
                     setLineAnimation(lineasChild[lineaI], 'lineaLeft', duracion * 4 + 'ms', duracion * 5 + 'ms');
                     
