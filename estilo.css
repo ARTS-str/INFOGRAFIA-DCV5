@@ -179,6 +179,7 @@ body{
 
 #LATAM{
     width: 100%;
+    
     position: fixed;
 }
 @media only screen and (max-width: 844px) {
@@ -187,6 +188,11 @@ body{
     }
 }
 @media only screen and (max-width: 600px) {
+    #LATAM{
+        image-rendering: optimizeSpeed; 
+    }#LATAM_EN{
+        image-rendering: optimizeSpeed; 
+    }
     body{
         overflow: hidden;
     }

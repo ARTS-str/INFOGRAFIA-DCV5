@@ -33,7 +33,6 @@ function mobileCheck() {
 };
 
 window.onscroll = () => {
-    console.log('SCROLL');
     
     let maxScroll = body.clientHeight - window.innerHeight;
     scrollPos = window.scrollY / maxScroll;
@@ -107,8 +106,7 @@ if (mobileCheck()) {
     window.ontouchend = () => {
         setTimeout(() => {
             if (isAutoScrolling) { 
-                console.log(scrollPos);
-                timelineS.currentTime = scrollPos;
+                timelineS.currentTime = scrollPercent / 100;
                 let scrollToY = calcularScrollYSegunPercent(timelineS.getClosestKeyframe().t * 100);
                 window.scrollTo({top: scrollToY, left: 0, behavior: 'smooth'});
             }
@@ -121,8 +119,7 @@ if (mobileCheck()) {
     window.onscrollend = () => {
         setTimeout(() => {
             if (isAutoScrolling) { 
-                console.log(scrollPos);
-                timelineS.currentTime = scrollPos;
+                timelineS.currentTime = scrollPercent / 100;
                 let scrollToY = calcularScrollYSegunPercent(timelineS.getClosestKeyframe().t * 100);
                 window.scrollTo({top: scrollToY, left: 0, behavior: 'smooth'});
             }
@@ -133,7 +130,6 @@ if (mobileCheck()) {
 
 function preload() {
     currentMap = latamMap;
-    setup()
 }
 
 function setup(){
@@ -218,7 +214,6 @@ function draw(){
     
     let viewBoxArgs = timelineX.valueAt(scrollPercentTimesTen) +' '+ timelineY.valueAt(scrollPercentTimesTen)  +' '+ 1920 * timelineZ.valueAt(scrollPercentTimesTen) + ' ' + 5784.413 * timelineZ.valueAt(scrollPercentTimesTen)
     currentMap.setAttribute('viewBox', viewBoxArgs);
-
 
 }
 
