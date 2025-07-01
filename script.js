@@ -19,7 +19,7 @@ let scrollPercent = 0;
 let scrollPos = 0;
 let maxScale = 10;
 let timelineX, timelineY, timelineZ, timelineS, timelineL;
-let closest, isScrolling, textCoord;
+let closest, textCoord;
 let isAutoScrolling = true;
 let linesAreVisible = false;
 let notAnimated = true;
@@ -33,12 +33,11 @@ function mobileCheck() {
 };
 
 window.onscroll = () => {
+    console.log('SCROLL');
+    
     let maxScroll = body.clientHeight - window.innerHeight;
     scrollPos = window.scrollY / maxScroll;
     scrollPercent = Math.min(100, Math.max(0, Math.round(scrollPos * 100)));
-    console.log(scrollPercent);
-    
-    isScrolling = true;
     elementosSegunScroll()
 };
 
@@ -107,7 +106,12 @@ if (mobileCheck()) {
     screenWidthNotification.innerHTML = 'Por favor, rota tu dispositivo.'
     window.ontouchend = () => {
         setTimeout(() => {
-            isScrolling = false;
+            if (isAutoScrolling) { 
+                console.log(scrollPos);
+                timelineS.currentTime = scrollPos;
+                let scrollToY = calcularScrollYSegunPercent(timelineS.getClosestKeyframe().t * 100);
+                window.scrollTo({top: scrollToY, left: 0, behavior: 'smooth'});
+            }
         }, 1000);
     }
     
@@ -116,7 +120,12 @@ if (mobileCheck()) {
 
     window.onscrollend = () => {
         setTimeout(() => {
-            isScrolling = false;
+            if (isAutoScrolling) { 
+                console.log(scrollPos);
+                timelineS.currentTime = scrollPos;
+                let scrollToY = calcularScrollYSegunPercent(timelineS.getClosestKeyframe().t * 100);
+                window.scrollTo({top: scrollToY, left: 0, behavior: 'smooth'});
+            }
         }, 1000);
     }
 }
@@ -124,6 +133,7 @@ if (mobileCheck()) {
 
 function preload() {
     currentMap = latamMap;
+    setup()
 }
 
 function setup(){
@@ -175,17 +185,17 @@ function setup(){
     //ZOOM
     timelineZ = new Timeline();
     //CONTEXTO
-    timelineZ.addKeyframe(0.13, 1.000);
+    timelineZ.addKeyframe(0.13, 1);
     //CENTROAMERICA
-    timelineZ.addKeyframe(0.24, 0.700);
+    timelineZ.addKeyframe(0.24, 0.7);
     //LATAM
-    timelineZ.addKeyframe(0.35, 1.000);
+    timelineZ.addKeyframe(0.35, 1);
     //URUGUAY
     timelineZ.addKeyframe(0.46, 0.125);
     //CHUY
-    timelineZ.addKeyframe(0.60, 0.050);
+    timelineZ.addKeyframe(0.60, 0.05);
     //TESTIMONIOS
-    timelineZ.addKeyframe(0.70, 1.000)
+    timelineZ.addKeyframe(0.70, 1)
 
     timelineZ.setAllValues(new Keyframe(0, 1.000), new Keyframe(1, 1.000));
 
@@ -201,17 +211,6 @@ function setup(){
     timelineS.addKeyframe(0.83, 0);
     timelineS.addKeyframe(0.9, 0);
     timelineS.addKeyframe(1, 0);
-
-    //LINEAS
-    //let totalLength;
-    //for (let linea of lineas) {
-    //    linea.style.strokeDasharray = linea.getTotalLength()
-    //    totalLength = linea.getTotalLength();
-    //}
-    //timelineL = new Timeline();
-    //timelineL.addKeyframe(0.7, totalLength)
-    //timelineL.setAllValues(new Keyframe(0, totalLength), new Keyframe(1, 0));
-
 }
 
 function draw(){
@@ -220,12 +219,7 @@ function draw(){
     let viewBoxArgs = timelineX.valueAt(scrollPercentTimesTen) +' '+ timelineY.valueAt(scrollPercentTimesTen)  +' '+ 1920 * timelineZ.valueAt(scrollPercentTimesTen) + ' ' + 5784.413 * timelineZ.valueAt(scrollPercentTimesTen)
     currentMap.setAttribute('viewBox', viewBoxArgs);
 
-    if (!isScrolling && isAutoScrolling) { 
-        timelineS.currentTime = scrollPos;
-        let scrollToY = calcularScrollYSegunPercent(timelineS.getClosestKeyframe().t * 100);
-        window.scrollTo({top: scrollToY, left: 0, behavior: 'smooth'});
-        
-    }
+
 }
 
 function setLineAnimation(lineToChange, animationName, animationDuration, animationDelay) {
@@ -324,6 +318,7 @@ function animateLines(){
 }
 
 function calcularScrollYSegunPercent(sPercent){
+    
     let maxScroll = body.clientHeight - window.innerHeight;
     return Math.round((sPercent / 100) * maxScroll);
 }

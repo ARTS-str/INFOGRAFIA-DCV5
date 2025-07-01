@@ -173,18 +173,12 @@ body{
 
 #LATAM_EN{
     display: none;
-    will-change: transform;
-    image-rendering: optimizeQuality;
     width: 100%;
-    height: auto;
     position: fixed;
 }
 
 #LATAM{
-    will-change: transform;
-    image-rendering: optimizeQuality;
     width: 100%;
-    height: auto;
     position: fixed;
 }
 @media only screen and (max-width: 844px) {
