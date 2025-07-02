@@ -69,13 +69,22 @@ html{
 .regular{
     font-family: NeueFrutigerWorld-Regular, 'Neue Frutiger World';
 }
+.italic{
+    font-family: NeueFrutigerWorld-It, 'Neue Frutiger World';
+}
 .bold{
     font-family: NeueFrutigerWorld-Bold, 'Neue Frutiger World';
+}
+.boldIt{
+    font-family: NeueFrutigerWorld-BoldIt, 'Neue Frutiger World';
+}
+.medium{
+    font-family: NeueFrutigerWorld-Medium, 'Neue Frutiger World';
 }
 .thin{
     font-family: NeueFrutigerWorld-Thin, 'Neue Frutiger World';
 }
-.thinItalic{
+.thinIt{
     font-family: NeueFrutigerWorld-ThinIt, 'Neue Frutiger World';
 }
 .uLight{
@@ -87,8 +96,20 @@ html{
 .xBlack{
     font-family: NeueFrutigerWorld-XtraBlk, 'Neue Frutiger World';
 }
-.titulo{
+.covikBlack{
     font-family: CovikSans-Black, 'Covik Sans';
+}
+.covikMed{
+    font-family: CovikSans-Medium, 'Covik Sans';
+}
+.covikSemibold{
+    font-family: CovikSans-Semibold, 'Covik Sans';
+}
+.covikSemiboldIt{
+    font-family: CovikSans-SemiboldItalic, 'Covik Sans';
+}
+.covikBold{
+    font-family: CovikSans-Bold, 'Covik Sans';
 }
 
 #SUDAMERICA{
