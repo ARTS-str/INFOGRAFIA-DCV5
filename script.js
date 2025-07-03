@@ -1,17 +1,24 @@
 let currentMap;
 let latamMap = document.getElementById('LATAM');
+let sudamerica = document.getElementById('SUDAMERICA');
+let CENTROAMERICA = document.getElementById('CENTROAMERICA');
 let sudamericaMarron = document.getElementById('SUDAMERICA-MARRON');
 let centroamericaMarron = document.getElementById('CENTROAMERICA-MARRON');
+let sudamericaEN = document.getElementById('SUDAMERICA-EN');
+let CENTROAMERICAEN = document.getElementById('CENTROAMERICA-EN');
+let sudamericaMarronEN = document.getElementById('SUDAMERICA-MARRON-EN');
+let centroamericaMarronEN = document.getElementById('CENTROAMERICA-MARRON-EN');
+let UYPreEN = document.getElementById('UY-EN');
+let UYEN = document.getElementById('URUGUAY_c_borde-EN');
+let UY_DeptEN = document.getElementById('uruguay_c_dept-EN');
 let UYPre = document.getElementById('UY');
 let UY = document.getElementById('URUGUAY_c_borde');
 let UY_Dept = document.getElementById('uruguay_c_dept');
-let titulo = document.getElementById('texttitulo');
 let lineas = document.getElementById('LINEAS');
-let sudamerica = document.getElementById('SUDAMERICA');
-let CENTROAMERICA = document.getElementById('CENTROAMERICA');
+let lineasEN = document.getElementById('LINEAS-EN');
 let screenWidthNotification = document.getElementById('screenWidthNotification');
-let paisesSudamericanos = sudamerica.children;
 let lineasChild = lineas.children;
+let lineasChildEN = lineasEN.children;
 let debug = document.getElementById('debug');
 let body = document.body;
 let scaleTransform, xTransform, yTransform;
@@ -34,12 +41,10 @@ function mobileCheck() {
 
 window.onmousedown = () => {
     holding = true;
-    console.log("dragging");
     
 }
 window.onmouseup = () => {
     holding = false;
-    console.log("end");
 }
 
 window.onscroll = () => {
@@ -56,7 +61,7 @@ function elementosSegunScroll() {
     }else{ 
         body.style.backgroundColor = colors[1];
     }
-    if (innerWidth > 600) {
+    if (currentMap === latamMap) {
         if (scrollPercent >= 22 && scrollPercent < 33) {
             show(zoom1);
             show(sudamerica);
@@ -96,18 +101,70 @@ function elementosSegunScroll() {
             fade(sudamericaMarron);
             fade(sudamerica);
         }
-    }
-    if (scrollPercent >= 33 && scrollPercent < 44) {
-        if (notAnimated) {
-            animateLines();
-            notAnimated = false;
+        if (scrollPercent >= 33 && scrollPercent < 44) {
+            if (notAnimated) {
+                animateLines(lineasChild);
+                notAnimated = false;
+            }
+        } else {
+            hideLines(lineasChild);
+            notAnimated = true;
+            clearTimeout(hideTimeout);
+            clearTimeout(animateTimeout);
+            clearTimeout(scrollDelayTimeout);
         }
-    } else {
-        hideLines();
-        notAnimated = true;
-        clearTimeout(hideTimeout);
-        clearTimeout(animateTimeout);
-        clearTimeout(scrollDelayTimeout);
+    }else if (currentMap === latamMapEN) {
+        if (scrollPercent >= 22 && scrollPercent < 33) {
+            show(zoom1EN);
+            show(sudamericaEN);
+            show(CENTROAMERICAEN);
+        }else{
+            fade(zoom1EN);
+        }
+        if (scrollPercent >= 33 && scrollPercent < 44) {
+            fade(sudamericaEN);
+            fade(CENTROAMERICAEN);
+            show(zoom2EN);
+        }else{
+            fade(zoom2EN);
+        }
+        if (scrollPercent >= 44 && scrollPercent < 58) {
+            show(zoom3EN);
+            show(UY_DeptEN);
+            show(sudamericaMarronEN);
+        }else{
+            fade(zoom3EN);
+            fade(UY_DeptEN);
+        }
+        if (scrollPercent >= 58 && scrollPercent < 61) {
+            show(zoom4EN);
+            show(UYEN);
+            fade(sudamericaMarronEN);
+            fade(sudamericaEN);
+        }else{
+            show(sudamericaMarronEN);
+            show(centroamericaMarronEN);
+            fade(UYEN);
+            fade(zoom4EN);
+        }
+        if (scrollPercent >= 75) {
+            fade(sudamericaEN);
+            fade(CENTROAMERICAEN)
+            fade(sudamericaMarronEN);
+            fade(sudamericaEN);
+        }
+        if (scrollPercent >= 33 && scrollPercent < 44) {
+            if (notAnimated) {
+                animateLines(lineasChildEN);
+                notAnimated = false;
+            }
+        } else {
+            hideLines(lineasChildEN);
+            notAnimated = true;
+            clearTimeout(hideTimeout);
+            clearTimeout(animateTimeout);
+            clearTimeout(scrollDelayTimeout);
+        }
     }
 }
 
@@ -237,7 +294,7 @@ function setLineTransparency(lineToChange, propertyName, transitionDuration, tra
     lineToChange.style.transitionDuration = transitionDuration;
     lineToChange.style.transitionDelay = transitionDelay;
 }
-function hideLines(){
+function hideLines(lineasChild){
     for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {
         setLineTransparency(lineasChild[lineaI], 'opacity', '0ms', '0ms');
         setLineAnimation(lineasChild[lineaI], 'none', '0ms', '0ms')
@@ -249,7 +306,7 @@ function hideLines(){
         }, 200);
     }
 }
-function animateLines(){
+function animateLines(lineasChild){
     let duracionInicialOpacidad = '500ms';
     let duracion = 500;
     for (let lineaI = 0; lineaI < lineasChild.length; lineaI++) {

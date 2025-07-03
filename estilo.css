@@ -112,6 +112,21 @@ html{
     font-family: CovikSans-Bold, 'Covik Sans';
 }
 
+button{
+    font-family: NeueFrutigerWorld-Bold, 'Neue Frutiger World';
+    width: 30px;
+    background-color: #291011;
+    color: #d6d6d6;
+    cursor: pointer;
+    border: 1px #d6d6d6 solid;
+    padding: 2px;
+    border-radius: 3px;
+    transition: scale 100ms ease-in-out;
+}
+button:hover{
+    scale: 110%;
+}
+
 #SUDAMERICA{
     transition: opacity 200ms ease-in-out;
 }
@@ -126,6 +141,15 @@ html{
 }
 #Zoom2{
     transition: opacity 100ms ease-in-out;
+}
+#flecha-en{
+    cursor: pointer;
+    animation: hover-en 1s ease-in-out alternate infinite;
+    transition: scale 100ms ease-in-out;
+}
+#flecha-en:hover{
+    animation-play-state: paused;
+    scale: 0.95;
 }
 #flecha{
     cursor: pointer;
@@ -152,6 +176,10 @@ html{
 g[id*='Zoom']{
     transition: opacity 200ms ease-in-out;
 
+}
+@keyframes hover-en {
+    from{transform:translateY(100px)}
+    to{transform:translateY(50px)}
 }
 
 @keyframes hover {
